@@ -12,7 +12,10 @@ while True:
         continue
 
     try:
-        ydl_opts = {'outtmpl': 'downloads/%(title)s.%(ext)s'}
+        ydl_opts = {'format': 'best[height>=720][acodec!=none]/best[acodec!=none]/best',  # Filter for 720p and above
+            'outtmpl': 'YT Downloader Videos/%(title)s.%(ext)s',  # Save to the correct folder
+            'noplaylist': True,  # Ensure only a single video is downloaded
+            }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
         print("Download complete!")
